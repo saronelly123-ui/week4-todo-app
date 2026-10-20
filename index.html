@@ -1,0 +1,127 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f8fafc" />
+    <meta
+      name="description"
+      content="TaskFlow is a simple study planner for organizing tasks."
+    />
+    <title>TaskFlow — Smart Study Planner</title>
+  </head>
+  <body class="min-h-screen bg-slate-50 text-slate-900">
+    <div class="mx-auto min-h-screen max-w-5xl px-4 py-8 sm:px-6 lg:py-12">
+      <header class="mb-10 flex items-center justify-between gap-4">
+        <a href="#" class="flex items-center gap-3" aria-label="TaskFlow home">
+          <span class="grid size-11 place-items-center rounded-2xl bg-indigo-600 text-xl font-bold text-white">T</span>
+          <span>
+            <span class="block text-xl font-bold tracking-tight">TaskFlow</span>
+            <span class="block text-xs text-slate-500">SMART STUDY PLANNER</span>
+          </span>
+        </a>
+        <button
+          id="themeToggle"
+          type="button"
+          class="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold shadow-sm hover:bg-slate-100 focus-visible:outline-2 focus-visible:outline-indigo-600"
+          aria-label="Switch to dark mode"
+        >🌙 Dark mode</button>
+      </header>
+
+      <main>
+        <section class="mb-8">
+          <p class="mb-2 text-sm font-semibold uppercase tracking-widest text-indigo-600">Your personal workspace</p>
+          <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">Make time for what matters.</h1>
+          <p class="mt-3 max-w-2xl text-slate-600">Plan your study sessions, stay focused, and celebrate every task you finish.</p>
+        </section>
+
+        <section class="mb-6 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-7" aria-labelledby="addHeading">
+          <h2 id="addHeading" class="mb-4 text-lg font-bold">Add a new task</h2>
+          <form id="taskForm" class="grid gap-3 sm:grid-cols-[1fr_150px_auto]">
+            <div>
+              <label for="taskInput" class="mb-2 block text-sm font-medium">Task name</label>
+              <input
+                id="taskInput"
+                name="task"
+                type="text"
+                maxlength="150"
+                placeholder="e.g. Review JavaScript functions"
+                autocomplete="off"
+                aria-describedby="formError"
+                class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+              />
+            </div>
+            <div>
+              <label for="priorityInput" class="mb-2 block text-sm font-medium">Priority</label>
+              <select id="priorityInput" class="w-full rounded-xl border border-slate-300 bg-white px-3 py-3 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100">
+                <option value="Low">Low</option>
+                <option value="Medium" selected>Medium</option>
+                <option value="High">High</option>
+              </select>
+            </div>
+            <div class="flex items-end">
+              <button type="submit" class="w-full rounded-xl bg-indigo-600 px-5 py-3 font-semibold text-white transition hover:bg-indigo-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">+ Add task</button>
+            </div>
+          </form>
+          <p id="formError" class="mt-2 min-h-5 text-sm text-red-600" role="alert"></p>
+        </section>
+
+        <section class="mb-5 grid grid-cols-2 gap-3 sm:grid-cols-3">
+          <div class="rounded-2xl border border-slate-200 bg-white p-4">
+            <p class="text-sm text-slate-500">Total tasks</p>
+            <p id="totalCount" class="mt-1 text-2xl font-bold">0</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-white p-4">
+            <p class="text-sm text-slate-500">Tasks left</p>
+            <p id="remainingCount" class="mt-1 text-2xl font-bold">0</p>
+          </div>
+          <div class="col-span-2 rounded-2xl border border-slate-200 bg-white p-4 sm:col-span-1">
+            <div class="flex items-center justify-between gap-2">
+              <p class="text-sm text-slate-500">Progress</p>
+              <span id="progressLabel" class="text-sm font-bold">0%</span>
+            </div>
+            <div class="mt-3 h-2 overflow-hidden rounded-full bg-slate-100">
+              <div id="progressBar" class="h-full w-0 rounded-full bg-indigo-600 transition-all duration-300"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-7" aria-labelledby="tasksHeading">
+          <div class="mb-5 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+            <div>
+              <h2 id="tasksHeading" class="text-xl font-bold">Your tasks</h2>
+              <p id="taskSummary" class="mt-1 text-sm text-slate-500">0 tasks left</p>
+            </div>
+            <button id="clearCompleted" type="button" class="self-start rounded-lg px-3 py-2 text-sm font-semibold text-red-600 hover:bg-red-50 focus-visible:outline-2 focus-visible:outline-red-500">Clear completed</button>
+          </div>
+
+          <label for="searchInput" class="mb-2 block text-sm font-medium">Search tasks</label>
+          <input
+            id="searchInput"
+            type="search"
+            placeholder="Search your tasks..."
+            class="mb-5 w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+          />
+
+          <div id="filterGroup" class="mb-5 flex flex-wrap gap-2" aria-label="Filter tasks">
+            <button type="button" data-filter="all" aria-pressed="true" class="filter-button rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">All</button>
+            <button type="button" data-filter="active" aria-pressed="false" class="filter-button rounded-xl bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-200">Active</button>
+            <button type="button" data-filter="completed" aria-pressed="false" class="filter-button rounded-xl bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-200">Completed</button>
+          </div>
+
+          <ul id="taskList" class="space-y-3" aria-label="Task list"></ul>
+          <div id="emptyState" class="hidden rounded-2xl border border-dashed border-slate-300 px-4 py-12 text-center">
+            <p id="emptyTitle" class="font-semibold">Nothing here yet</p>
+            <p id="emptyMessage" class="mt-2 text-sm text-slate-500">Add your first task to get started.</p>
+          </div>
+        </section>
+      </main>
+
+      <footer class="py-8 text-center text-sm text-slate-500">
+        Built with JavaScript and Tailwind CSS · Stay focused, one task at a time.
+      </footer>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

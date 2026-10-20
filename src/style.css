@@ -1,0 +1,143 @@
+
+@import "tailwindcss";
+
+/* Keep controls accessible and the layout usable on small screens. */
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 3px solid #818cf8;
+  outline-offset: 3px;
+}
+
+.priority-badge {
+  display: inline-block;
+  margin-top: 8px;
+  border-radius: 999px;
+  padding: 3px 9px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.priority-high {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.priority-medium {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.priority-low {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.task-item {
+  transition: border-color 160ms ease, background-color 160ms ease;
+}
+
+.task-item:hover {
+  border-color: #c7d2fe;
+}
+
+/* Apply a consistent dark theme to the app's main surfaces and controls. */
+html.dark body {
+  background: #0f172a;
+  color: #f1f5f9;
+}
+
+html.dark header a span,
+html.dark main h1,
+html.dark main h2,
+html.dark main label {
+  color: #f1f5f9;
+}
+
+html.dark main section,
+html.dark main section > div,
+html.dark .task-item {
+  border-color: #334155;
+  background-color: #1e293b;
+}
+
+html.dark main p,
+html.dark footer,
+html.dark #taskSummary {
+  color: #cbd5e1;
+}
+
+html.dark input,
+html.dark select {
+  border-color: #475569;
+  background-color: #0f172a;
+  color: #f1f5f9;
+}
+
+html.dark input::placeholder {
+  color: #94a3b8;
+}
+
+html.dark #themeToggle {
+  border-color: #475569;
+  background-color: #1e293b;
+  color: #f1f5f9;
+}
+
+html.dark .task-item .text-slate-800 {
+  color: #f1f5f9;
+}
+
+html.dark .task-item .text-slate-400 {
+  color: #94a3b8;
+}
+
+html.dark .filter-button:not([aria-pressed="true"]) {
+  background-color: #334155;
+  color: #e2e8f0;
+}
+
+html.dark #emptyState {
+  border-color: #475569;
+}
+
+html.dark #progressBar {
+  background-color: #818cf8;
+}
+
+html.dark #clearCompleted:hover {
+  background-color: #450a0a;
+}
+
+/* Avoid hover effects for people who prefer reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

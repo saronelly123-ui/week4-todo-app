@@ -165,7 +165,7 @@ Vite generates the production files in the `dist` directory.
 \## Deployment
 
 
-
+Live demo: https://saronelly123-ui.github.io/week4-todo-app/
 The application is deployed to GitHub Pages. GitHub Actions builds the Vite application and deploys the generated `dist` directory when changes are pushed to the `main` branch.
 
 
@@ -196,7 +196,12 @@ The application is deployed to GitHub Pages. GitHub Actions builds the Vite appl
 
 TaskFlow uses semantic HTML, form labels, accessible button names, and visible focus styles. The layout adapts to different screen sizes.
 
+## Quality Check
 
+Run the production build check before submitting changes:
+
+```bash
+npm run check
 
 \## Author
 
